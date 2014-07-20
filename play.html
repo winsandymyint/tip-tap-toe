@@ -59,38 +59,66 @@
 		console.log(input1);
 		var winner= null;
 		var player1= [];
-
+		var result= [];
 
 		//Get Click Cube ID
 		function get_cube_id (id) {
-			// body...
 			player1.push(id);
+
+			//Disable click for already clicked Cube
+			if (true) {
+				$('#1').unbind( "click");
+				//console.log('HAHA');
+
+			}
+			//detected the clicked cube with the pattern array
+			if (player1.length >=3) {
+				//console.log("Array index 2");
+
+				$.each(pattern, function (index, val) {
+					//console.log(index);
+					//console.log(val);
+					player1.map(function (x) {  
+						result.push($.inArray(parseInt(x), val) < 0 ? null : console.log("MINE "+ x));
+						console.log(parseInt(x));
+						//if (result.length==3) { alert("DEDE")};
+					});
+					/*if (player1.sort().join()===pattern[index].join()){
+						winner= "Player 1";
+						console.log("match");
+
+						//Check the Player 1 with Pattern
+						//Change color for 3 cube match with pattern
+						$.each(player1, function (index, value) {
+							// body...
+							$('#'+value).css('background', '#ff0000');
+						})
+					}*/
+				})
+/*				for (var i = 0; i < pattern.length; i++) {
+
+					//Check the Player 1 with Pattern
+					if (player1.sort().join()===pattern[i].join()){
+						winner= "Player 1";
+						console.log("match");
+
+						//Change color for 3 cube match with pattern
+						$.each(player1, function (index, value) {
+							// body...
+							$('#'+value).css('background', '#ff0000');
+						})
+					}
+				};*/
+			}else if(true){//Check Cube id with Pattern when Cube id is more than 3
+				player1.sort();
+			}
+			//console.log("Unsorted Player1's Pattern "+ input1);
+			//console.log("Nothing");
 		}
 		console.log(player1);
 
-		//Disable click for already clicked Cube
 
 
-		if (player1.length== 3) {
-			console.log("Array index 2");
-			for (var i = 0; i < pattern.length; i++) {
-				
-				//Check the Player 1 with Pattern
-				if (player1.to_string.sort().join()===pattern[i].join()){
-					winner= "Player 1";
-					console.log("match");
-
-					//Change color for 3 cube match with pattern
-					$.each(player1, function (index, value) {
-						// body...
-						$('#'+value).css('background', '#ff0000');
-					})
-				}
-			};
-			console.log(player1.sort());
-		}
-		console.log("Unsorted Player1's Pattern "+ input1);
-		console.log("Nothing");
 
 	</script>
 </body>
