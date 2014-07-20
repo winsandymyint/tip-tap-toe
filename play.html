@@ -1,7 +1,6 @@
 <html>
 <head>
 	<title>Play</title>
-	<script type="js/jquery-1.11.1.min"></script>
 	<style type="text/css">
 		#cube{
 			width: 302px;
@@ -36,21 +35,22 @@
 <body>
 	<div id="cube">
 		<div class="cube">
-			<div class="row" id="1" onclick="get_id(this.id)">1</div>
-			<div class="row" id="2" onclick="get_id(this.id)">2</div>
-			<div class="row" id="3" onclick="get_id(this.id)">3</div>
+			<div class="row" id="1" onclick="get_cube_id(this.id)">1</div>
+			<div class="row" id="2" onclick="get_cube_id(this.id)">2</div>
+			<div class="row" id="3" onclick="get_cube_id(this.id)">3</div>
 		</div>
 		<div class="cube">
-			<div class="row" id="4" onclick="get_id(this.id)">4</div>
-			<div class="row" id="5" onclick="get_id(this.id)">5</div>
-			<div class="row" id="6" onclick="get_id(this.id)">6</div>
+			<div class="row" id="4" onclick="get_cube_id(this.id)">4</div>
+			<div class="row" id="5" onclick="get_cube_id(this.id)">5</div>
+			<div class="row" id="6" onclick="get_cube_id(this.id)">6</div>
 		</div>
 		<div class="cube">
-			<div class="row" id="7" onclick="get_id(this.id)">7</div>
-			<div class="row" id="8" onclick="get_id(this.id)">8</div>
-			<div class="row" id="9" onclick="get_id(this.id)">9</div>
+			<div class="row" id="7" onclick="get_cube_id(this.id)">7</div>
+			<div class="row" id="8" onclick="get_cube_id(this.id)">8</div>
+			<div class="row" id="9" onclick="get_cube_id(this.id)">9</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
 
 	<script type="text/javascript">
 
@@ -58,15 +58,33 @@
 		var input1= [3, 2, 1];
 		console.log(input1);
 		var winner= null;
-		//player1.push(prompt());
-		var player1= [3, 2, 1];
+		var player1= [];
+
+
+		//Get Click Cube ID
+		function get_cube_id (id) {
+			// body...
+			player1.push(id);
+		}
+		console.log(player1);
+
+		//Disable click for already clicked Cube
+
+
 		if (player1.length== 3) {
 			console.log("Array index 2");
 			for (var i = 0; i < pattern.length; i++) {
+				
 				//Check the Player 1 with Pattern
-				if (player1.sort().join()===pattern[i].join()){
+				if (player1.to_string.sort().join()===pattern[i].join()){
 					winner= "Player 1";
 					console.log("match");
+
+					//Change color for 3 cube match with pattern
+					$.each(player1, function (index, value) {
+						// body...
+						$('#'+value).css('background', '#ff0000');
+					})
 				}
 			};
 			console.log(player1.sort());
@@ -74,12 +92,6 @@
 		console.log("Unsorted Player1's Pattern "+ input1);
 		console.log("Nothing");
 
-		function get_id (id) {
-			// body...
-			console.log(id);
-			
-			//console.log(document.getElementById('\''+id+'\''));
-		}
 	</script>
 </body>
 </html>
