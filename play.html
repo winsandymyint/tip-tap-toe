@@ -74,9 +74,10 @@
 			if (player1.length >=3) {
 				//console.log("Array index 2");
 
-				pattern.map(function (x) {
-					result.push($.inArray(x, player1) < 0 ? null : console.log("MINE "+ x));
-					console.log(parseInt(x));
+				$.each(pattern, function (index, value) {
+					//console.log("Pattern "+ value);
+					result.push($.inArray((7,8,9), player1) < 0 ? null : console.log("MINE "+ index));
+					//console.log(parseInt(x));
 					//if (result.length==3) { alert("DEDE")};
 					/*if (player1.sort().join()===pattern[index].join()){
 						winner= "Player 1";
