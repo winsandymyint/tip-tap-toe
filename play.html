@@ -56,7 +56,7 @@
 
 		var pattern= [[1,2,3], [1,4,7], [1,5,9], [2,5,8], [3,6,9], [3,5,7], [4,5,6], [7,8,9]];
 		var input1= [3, 2, 1];
-		console.log(input1);
+		//console.log(input1);
 		var winner= null;
 		var player1= [];
 		var result= [];
@@ -65,57 +65,35 @@
 		function get_cube_id (id) {
 			player1.push(parseInt(id));
 
+			function check_contains_all(needles, haystack){ 
+				for(var i = 0 , len = needles.length; i < len; i++){
+					if($.inArray(needles[i], haystack) == -1) return false;
+				}
+				return true;
+			}
+
 			//Disable click for already clicked Cube
 			if (true) {
 				$('#1').unbind( "click");
-
 			}
 			//detected the clicked cube with the pattern array
 			if (player1.length >=3) {
-				//console.log("Array index 2");
-
-				$.each(pattern, function (index, value) {
-					//console.log("Pattern "+ value);
-					result.push($.inArray((7,8,9), player1) < 0 ? null : console.log("MINE "+ index));
-					//console.log(parseInt(x));
-					//if (result.length==3) { alert("DEDE")};
-					/*if (player1.sort().join()===pattern[index].join()){
-						winner= "Player 1";
-						console.log("match");
-
-						//Check the Player 1 with Pattern
-						//Change color for 3 cube match with pattern
-						$.each(player1, function (index, value) {
-							// body...
-							$('#'+value).css('background', '#ff0000');
+				$.each(pattern, function (index, value) {					
+					if (check_contains_all(value, player1)) {
+						//apply the clolor for Cube
+						$.each(value, function (index, val) {
+							$('#'+val).css('background', '#ff0000');
 						})
-					}*/
-				})
-/*				for (var i = 0; i < pattern.length; i++) {
 
-					//Check the Player 1 with Pattern
-					if (player1.sort().join()===pattern[i].join()){
-						winner= "Player 1";
-						console.log("match");
-
-						//Change color for 3 cube match with pattern
-						$.each(player1, function (index, value) {
-							// body...
-							$('#'+value).css('background', '#ff0000');
-						})
+						//Break from coloring 
+						//return false;
+						//Close the Game, Announce the Winner
 					}
-				};*/
-			}else if(true){//Check Cube id with Pattern when Cube id is more than 3
-				player1.sort();
+				})
+				//return false;
+
 			}
-			//console.log("Unsorted Player1's Pattern "+ input1);
-			//console.log("Nothing");
 		}
-		console.log(player1);
-
-
-
-
 	</script>
 </body>
 </html>
